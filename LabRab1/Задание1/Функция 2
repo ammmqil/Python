@@ -1,0 +1,9 @@
+def Proizved_num(num):
+    temp_multi = 1
+    num_str = str(num)
+    for i in num_str:
+        if i != '5':
+            num_int = int(i)
+            temp_multi *= num_int
+    return temp_multi
+print(Proizved_num(123525))
