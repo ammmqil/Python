@@ -1,0 +1,23 @@
+def Find_dates(text):
+    for p in ',.!?;:':
+        text = text.replace(p, ' ')
+
+    words = text.split()
+    dates = []
+    months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+              'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+
+    for i in range(len(words) - 2):
+        try:
+            day = int(words[i])
+            month = words[i + 1].lower()
+            year = int(words[i + 2])
+
+            if 1 <= day <= 31 and month in months and 1000 <= year <= 3000:
+                dates.append(words[i] + ' ' + words[i + 1] + ' ' + words[i + 2])
+        except:
+            continue
+
+    return dates
+
+print(*Find_dates("30 января 2007 года я родилась. 29 февраля 2008 родился мой брат, 31 апреля 2023, 9 мая это праздник"))
