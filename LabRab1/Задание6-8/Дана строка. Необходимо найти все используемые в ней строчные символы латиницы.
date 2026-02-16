@@ -1,0 +1,10 @@
+def Search_letter(text):
+    alf = 'abcdefghigklmnopqrstuvwxyz'
+    list_letter = []
+    for letter in text:
+        for letter_alf in alf:
+            if letter == letter_alf and letter not in list_letter:
+                list_letter.append(letter)
+    return list_letter
+
+print(*Search_letter('фвифнвпzwоарлуdfghlвраyxz'))
