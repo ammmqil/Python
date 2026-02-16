@@ -1,0 +1,10 @@
+def Count_rus_words(text):
+    alf = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчъыьэюя'
+    count = 0
+    for letter in text:
+        for letter_alf in alf:
+            if letter == letter_alf:
+                count +=1
+    return count
+
+print(Count_rus_words('amdfjkабВjcndjcЙклм'))
