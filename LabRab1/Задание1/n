@@ -1,0 +1,30 @@
+def Is_prost(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+
+def Find_NOD_max_del(num):
+    #Поиск максимального нечетного непростого делителя
+    max_del = 1
+    for i in range(1, num + 1):
+        if num % i == 0 and i % 2 != 0 and not Is_prost(i):
+            max_del = i
+
+    prod = 1
+    n = abs(num)
+    while n > 0:
+        prod *= n % 10
+        n //= 10
+    print(f"Произведение цифр числа: {prod}")
+
+    #НОД
+    a, b = max_del, prod
+    while b:
+        a, b = b, a % b
+    return a
+
+print(Find_NOD_max_del(36))
