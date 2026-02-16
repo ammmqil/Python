@@ -1,0 +1,12 @@
+import random
+
+def Mix_words(text):
+    words = text.split(' ')
+    list_end = []
+    while words:
+        rnd_word = random.choice(words)
+        list_end.append(rnd_word)
+        words.remove(rnd_word)
+    return list_end
+
+print(*Mix_words('ab bc cd de'))
