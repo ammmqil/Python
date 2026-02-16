@@ -1,0 +1,7 @@
+def Rus_flag_sort(colors):
+    white_col = colors.count('белый')
+    blue_col  = colors.count('синий')
+    red_col = colors.count('красный')
+    return ['белый'] * white_col + ['синий'] * blue_col + ['красный'] * red_col
+
+print(*Rus_flag_sort(['красный', 'синий', 'белый', 'красный', 'белый', 'синий', 'белый']))
