@@ -1,0 +1,9 @@
+def Even_word(text):
+    words = text.split(' ')
+    count = 0
+    for word in words:
+        if len(word) % 2 == 0:
+            count += 1
+    return count
+
+print(Even_word('ab bcd de fg hij kl'))
