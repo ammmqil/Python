@@ -1,0 +1,10 @@
+def Search_min_num(text):
+    nums = text.split(' ')
+    min_num = 10**6
+    for num_str in nums:
+        num = float(num_str)
+        if num < min_num and num % 1 == 0:
+            min_num = num
+    return int(min_num)
+
+print(Search_min_num('45 76 782 234 67986 2342 99 1 0.5'))
