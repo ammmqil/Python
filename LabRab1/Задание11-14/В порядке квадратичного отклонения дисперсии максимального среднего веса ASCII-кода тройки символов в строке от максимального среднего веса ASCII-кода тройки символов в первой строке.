@@ -1,0 +1,55 @@
+def Sort_string_four():
+    text = []
+    print('Введите строки')
+    while True:
+        word = input()
+        if word == '':
+            break
+        text.append(word)
+
+    #для первой строки считаем макс средний вес тройки
+    first_max = 0
+    s1 = text[0]
+    if len(s1) >= 3:
+        for i in range(len(s1) - 2):
+            three_num = s1[i:i+3]
+            avg = (ord(three_num[0]) + ord(three_num[1]) + ord(three_num[2])) / 3
+            if avg > first_max:
+                first_max = avg
+
+    #отклонение для каждой строки
+    deviation = []
+    for s in text:
+        if len(s) < 3:
+            deviation.append(0)
+            continue
+
+        #все средние веса троек
+        averages = []
+        for i in range(len(s) - 2):
+            three_num = s[i:i + 3]
+            avg = (ord(three_num[0]) + ord(three_num[1]) + ord(three_num[2])) / 3
+            averages.append(avg)
+
+        #макс средний вес для текущей строки
+        current_max = max(averages)
+
+        #дисперсия
+        mean = sum(averages) / len(averages)
+        disp = sum((x - mean) ** 2 for x in averages) / len(averages)
+
+        #квадрат отклонение от первой строки
+        kv_otkl = (disp - first_max) ** 2
+        deviation.append(kv_otkl)
+
+    #сортировка
+    for i in range(len(text)):
+        for j in range(i + 1, len(text)):
+            if deviation[i] > deviation[j]:
+                text[i], text[j] = text[j], text[i]
+                deviation[i], deviation[j] = deviation[j], deviation[i]
+
+    for i in range(len(text)):
+        print(f"'{text[i]}' -> отклонение = {deviation[i]:.4f}")
+
+Sort_string_four()
