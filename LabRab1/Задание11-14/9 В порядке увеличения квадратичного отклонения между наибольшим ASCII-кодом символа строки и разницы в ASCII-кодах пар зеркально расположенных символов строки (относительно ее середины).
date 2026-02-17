@@ -1,0 +1,46 @@
+def Sort_string_three():
+    text = []
+    print('Введите строки')
+    while True:
+        word = input()
+        if word == '':
+            break
+        text.append(word)
+
+    #отклонение для каждой строки
+    deviation = []
+
+    for s in text:
+        if len(s) == 0:
+            deviation.append(0)
+            continue
+
+        #наиб код символа
+        max_ascii = 0
+        for char in s:
+            if ord(char) > max_ascii:
+                max_ascii = ord(char)
+
+        #разница кодов зеркальных пар
+        raznica_par = 0
+        length = len(s)
+        for i in range(length // 2):
+            left = ord(s[i])
+            right = ord(s[length - 1 - i])
+            raznica_par += abs(left - right)
+
+        #квадратичное отклонение
+        kv_otkl = ((max_ascii - raznica_par) ** 2)
+        deviation.append(kv_otkl)
+
+    #сортировка
+    for i in range(len(text)):
+        for j in range(i + 1, len(text)):
+            if deviation[i] > deviation[j]:
+                text[i], text[j] = text[j], text[i]
+                deviation[i], deviation[j] = deviation[j], deviation[i]
+
+    for i in range(len(text)):
+        print(f"{text[i]} -> отклонение = {deviation[i]}")
+
+Sort_string_three()
