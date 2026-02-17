@@ -1,0 +1,16 @@
+def Find_el_before_min():
+    print('Введите числа')
+    numbers = list(map(int, input().split()))
+
+    min_val = min(numbers)
+    last_min_index = -1
+    for i in range(len(numbers) -1, -1, -1):
+        if numbers[i] == min_val:
+            last_min_index = i
+            break
+
+    elems_before = numbers[:last_min_index]
+
+    print(elems_before)
+
+Find_el_before_min()
