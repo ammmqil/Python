@@ -1,0 +1,16 @@
+def Sort_word_length():
+    text = []
+    print('Введите строки')
+    while True:
+        word = input()
+        if word == '':
+            break
+        text.append(word)
+
+    for i in range(len(text)):
+        for j in range(i+1, len(text)):
+            if len(text[i]) > len(text[j]):
+                text[i], text[j] = text[j], text[i]
+    return text
+
+print(*Sort_word_length())
