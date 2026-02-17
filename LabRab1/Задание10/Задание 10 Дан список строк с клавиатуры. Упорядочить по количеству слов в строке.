@@ -1,0 +1,20 @@
+def Sort_word_string():
+    text = []
+    print('Введите строки')
+    while True:
+        word = input()
+        if word == '':
+            break
+        text.append(word)
+
+    for i in range(len(text)):
+        for j in range(i+1, len(text)):
+            words_i = len(text[i].split())
+            words_j = len(text[j].split())
+
+            if words_i >words_j:
+                text[i], text[j] = text[j], text[i]
+    for string in text:
+        print(string)
+
+Sort_word_string()
