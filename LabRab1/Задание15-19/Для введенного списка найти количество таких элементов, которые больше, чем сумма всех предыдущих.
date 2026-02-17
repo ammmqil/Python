@@ -1,0 +1,12 @@
+def Find_elema_larger_sum():
+    print('Введите числа')
+    numbers = list(map(int, input().split()))
+
+    count, sum = -1, 0
+    for i in range(len(numbers)):
+        if numbers[i] > sum:
+            count += 1
+        sum += numbers[i]
+    print(f"Количество таких элементов: {count}")
+
+Find_elema_larger_sum()
