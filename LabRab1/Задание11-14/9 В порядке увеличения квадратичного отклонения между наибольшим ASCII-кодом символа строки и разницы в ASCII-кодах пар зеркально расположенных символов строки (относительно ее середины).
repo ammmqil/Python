@@ -15,11 +15,7 @@ def Sort_string_three():
             deviation.append(0)
             continue
 
-        #наиб код символа
-        max_ascii = 0
-        for char in s:
-            if ord(char) > max_ascii:
-                max_ascii = ord(char)
+        max_ascii = max(ord(char) for char in s)
 
         #разница кодов зеркальных пар
         raznica_par = 0
