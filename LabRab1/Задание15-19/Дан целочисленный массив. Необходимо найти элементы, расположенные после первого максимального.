@@ -1,0 +1,16 @@
+def Find_first_after_max():
+    print('Введите числа')
+    numbers = list(map(int, input().split()))
+
+    max_val = max(numbers)
+    first_max_index = len(numbers) - 1
+    for i in range(len(numbers)):
+        if numbers[i] == max_val:
+            first_max_index = i
+            break
+
+    elems_after = numbers[first_max_index+1:]
+
+    print(elems_after)
+
+Find_first_after_max()
