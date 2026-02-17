@@ -1,0 +1,42 @@
+def Sort_string_one():
+    text = []
+    print('Введите строки')
+    while True:
+        word = input()
+        if word == '':
+            break
+        text.append(word)
+
+    #разница для каждой строки
+    diff = []
+    for s in text:
+        #самый частый символ
+        max_count = 0
+        for char in s:
+            count = s.count(char)
+            if count > max_count:
+                max_count = count
+
+        #частота в строке
+        freq_in_string = max_count / len(s)
+
+        #примерные частоты букв
+        if 'о' in s or 'а' in s or 'е' in s or 'и' in s or 'н' in s or 'т' in s or 'с' in s:
+            freq_in_alph = 0.07
+        else:
+            freq_in_alph = 0.02
+
+        diff.append(abs(freq_in_string - freq_in_alph))
+
+    #сортировка
+    for i in range(len(text)):
+        for j in range(i + 1, len(text)):
+            if diff[i] > diff[j]:
+                text[i], text[j] = text[j], text[i]
+                diff[i], diff[j] = diff[j], diff[i]
+
+    for s in text:
+        print(s)
+
+
+Sort_string_one()
