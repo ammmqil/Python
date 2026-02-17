@@ -14,7 +14,7 @@ def Sort_string_one():
         'l': 0.034, 'f': 0.029, 'c': 0.027, 'u': 0.023, 'm': 0.021,
         'p': 0.018, 'y': 0.012, 'w': 0.012, 'g': 0.011, 'b': 0.011,
         'v': 0.008, 'k': 0.003, 'x': 0.001, 'j': 0.001, 'q': 0.001,
-        'z': 0.001, ' ': 0.2 }
+        'z': 0.001}
 
     #разница для каждой строки
     diff = []
@@ -23,7 +23,8 @@ def Sort_string_one():
             diff.append(0)
             continue
 
-        s_lower = s.lower()
+        s_lower = s.replace(' ', '').lower()
+
         #самый частый символ
         max_count = 0
         most_frequent_char = ''
@@ -38,12 +39,14 @@ def Sort_string_one():
             diff.append(0)
             continue
 
-        #частота в строке
-        freq_in_string = max_count / len(s)
+        #частота в строке (используем длину строки БЕЗ пробелов)
+        freq_in_string = max_count / len(s_lower)
 
         #частота этого символа в алфавите
         if most_frequent_char in freq_alphabet:
             freq_in_alph = freq_alphabet[most_frequent_char]
+        else:
+            freq_in_alph = 0.01
 
         #разница
         diff.append(abs(freq_in_string - freq_in_alph))
@@ -56,6 +59,7 @@ def Sort_string_one():
                 diff[i], diff[j] = diff[j], diff[i]
 
     for i in range(len(text)):
-        print(f"{text[i]} (разница={diff[i]})")
+        print(f"{text[i]} (разница={diff[i]:.4f})")
+
 
 Sort_string_one()
