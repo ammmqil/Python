@@ -1,0 +1,10 @@
+def Find_sum_between():
+    print('Введите числа')
+    numbers = list(map(int, input().split()))
+    print('Введите интервал a b:')
+    a, b = map(int, input().split())
+
+    result = sum([x for x in numbers if a<= x <= b])
+    print(result)
+
+Find_sum_between()
