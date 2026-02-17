@@ -7,35 +7,49 @@ def Sort_string_two():
             break
         text.append(word)
 
-    #отклонение для каждой строки
-    deviation = []
+    #вероятности букв в английском алфавите
+    freq_alphabet = {
+        'e': 0.13, 't': 0.105, 'a': 0.081, 'o': 0.079, 'n': 0.071,
+        'r': 0.068, 'i': 0.063, 's': 0.061, 'h': 0.052, 'd': 0.038,
+        'l': 0.034, 'f': 0.029, 'c': 0.027, 'u': 0.023, 'm': 0.021,
+        'p': 0.018, 'y': 0.012, 'w': 0.012, 'g': 0.011, 'b': 0.011,
+        'v': 0.008, 'k': 0.003, 'x': 0.001, 'j': 0.001, 'q': 0.001,
+        'z': 0.001 }
 
+    #квадратичное отклонение для каждой строки
+    deviation = []
     for s in text:
         if len(s) == 0:
             deviation.append(0)
             continue
 
+        s_lower = s.replace(' ', '').lower()
+
         #самый частый символ
         max_count = 0
-        for char in s:
-            count = s.count(char)
-            if count > max_count:
-                max_count = count
+        most_frequent_char = ''
+        for char in s_lower:
+            if char.isalpha():
+                count = s_lower.count(char)
+                if count > max_count:
+                    max_count = count
+                    most_frequent_char = char
+        if max_count == 0:
+            deviation.append(0)
+            continue
 
         #частота в строке
-        freq_in_string = max_count / len(s)
+        freq_in_string = max_count / len(s_lower)
 
-        #примерная частота в алфавите
-        if 'о' in s or 'а' in s or 'е' in s or 'и' in s or 'н' in s or 'т' in s or 'с' in s:
-            freq_in_alph = 0.07
-        else:
-            freq_in_alph = 0.02
+        #частота этого символа в алфавите
+        if most_frequent_char in freq_alphabet:
+            freq_in_alph = freq_alphabet[most_frequent_char]
 
-        #квадрат отклонение
+        #квадратичное отклонение
         kvad_otkl = (freq_in_string - freq_in_alph) ** 2
         deviation.append(kvad_otkl)
 
-    #cортировка
+    #сортировка
     for i in range(len(text)):
         for j in range(i + 1, len(text)):
             if deviation[i] > deviation[j]:
@@ -43,6 +57,6 @@ def Sort_string_two():
                 deviation[i], deviation[j] = deviation[j], deviation[i]
 
     for i in range(len(text)):
-        print(f"{text[i]} -> квадрат. отклонение = {deviation[i]}")
+        print(f"'{text[i]}' -> отклонение = {deviation[i]:.4f}")
 
 Sort_string_two()
