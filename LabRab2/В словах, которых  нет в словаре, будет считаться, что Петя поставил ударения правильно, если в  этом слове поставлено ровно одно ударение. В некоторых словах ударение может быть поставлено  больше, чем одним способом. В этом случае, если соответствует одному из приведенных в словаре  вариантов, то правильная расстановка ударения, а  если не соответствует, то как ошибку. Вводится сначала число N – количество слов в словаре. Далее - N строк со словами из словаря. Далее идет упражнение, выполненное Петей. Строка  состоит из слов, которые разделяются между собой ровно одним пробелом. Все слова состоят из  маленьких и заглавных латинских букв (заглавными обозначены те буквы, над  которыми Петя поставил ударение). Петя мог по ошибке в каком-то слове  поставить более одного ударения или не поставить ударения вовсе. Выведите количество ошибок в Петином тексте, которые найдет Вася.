@@ -1,0 +1,36 @@
+def Check_accents():
+    accent_dict = {} #Ключ это слово в нижнем регистре, а значение это множество вариантов ударения
+
+    print('Введите количество слов в словаре')
+    words_in_dict = int(input())
+
+    print('Введите слова из словаря')
+    for _ in range(words_in_dict):
+        word = input().strip()
+        word_lower = word.lower()
+        if word_lower not in accent_dict: #Добавляем вариант ударения
+            accent_dict[word_lower] = set()
+        accent_dict[word_lower].add(word)
+
+    print('Введите текст Пети')
+    pete_words = input().strip().split()
+
+    errors_count = 0
+    for word in pete_words:
+        capital_count = 0
+        for letter in word: #Количество ударений
+            if letter.isupper():
+                capital_count += 1
+
+        word_lower = word.lower() #Для поиска в словаре
+
+        if word_lower in accent_dict:
+            if word not in accent_dict[word_lower]:
+                errors_count += 1
+        else:
+            if capital_count != 1:
+                errors_count += 1
+
+    print(f'\nКоличество ошибок: {errors_count}')
+
+Check_accents()
