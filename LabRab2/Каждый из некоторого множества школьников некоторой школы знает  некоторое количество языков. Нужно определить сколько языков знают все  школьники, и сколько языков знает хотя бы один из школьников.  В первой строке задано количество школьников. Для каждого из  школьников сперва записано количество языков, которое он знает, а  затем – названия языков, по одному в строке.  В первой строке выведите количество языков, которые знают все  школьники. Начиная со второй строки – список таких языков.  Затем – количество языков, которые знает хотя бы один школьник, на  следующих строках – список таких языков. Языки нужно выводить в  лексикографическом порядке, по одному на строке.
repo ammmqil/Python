@@ -1,0 +1,37 @@
+def Сount_languages():
+    languages_all = set() #Знают все
+    languages_any = set() #Знает хотя бы один
+
+    print('Введите количество школьников')
+    nums_of_stud = int(input())
+
+    for i in range(nums_of_stud):
+        print(f'\nШкольник №{i+1}')
+        print('Введите количество языков')
+        count_of_languages = int(input())
+
+        print('Введите название языков через Enter')
+        stud_languages = set()
+        for _ in range(count_of_languages):
+            language = input()
+            stud_languages.add(language)
+
+        if i == 0:
+            languages_all = stud_languages.copy()
+        else:
+            languages_all &= stud_languages
+
+        languages_any |= stud_languages
+
+    all_lang_sorted = sorted(languages_all)
+    any_lang_sorted = sorted(languages_any)
+
+    print(f'\nЯзыки, знающие все школьники - {len(all_lang_sorted)}')
+    for lang in all_lang_sorted:
+        print(lang)
+
+    print(f'\nЯзыки, знающий хотябы один школьник - {len(any_lang_sorted)}')
+    for lang in any_lang_sorted:
+        print(lang)
+
+Сount_languages()
